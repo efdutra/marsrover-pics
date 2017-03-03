@@ -1,16 +1,16 @@
 function init(){
     /*************** Dependencies ***************/
-    var _ = require('../util/dom-manipulator');
+    var _ = require('dom-manipulator');
     /********************************************/
 
     var hash = window.location.hash;
-    _._bindElm(_._('.animated-scroll', true), 'click', linkClicked);
+    _.bindElm(_.getElm('.animated-scroll', true), 'click', linkClicked);
 
     function linkClicked(e){
         e && e.preventDefault();
         hash = this.href.match(/#.*/);
         if(!hash || !hash[0]) return location.href = this.href;
-        scrollTo(_._(hash[0]));
+        scrollTo(_.getElm(hash[0]));
         return location.hash = hash;
     }
 }
@@ -20,21 +20,21 @@ function scrollTo(elm, options){
     options      = options || {};
     options.step = options.step || (!window.isIe ? 10 : 100);
     options.time = options.time || 1;
-    
+
     var limit  = elm.offsetTop
     ,   toDown = window.scrollY < limit
     ,   i      = window.scrollY
     ,   scrollInterval = setInterval(function(){
 
         i += toDown ? options.step : -options.step;
-       
+
         window.scrollTo(0, i);
 
         if((toDown && i >= limit) ||
            (!toDown && i <= 0)) {
             clearInterval(scrollInterval)
         }
-        
+
     }, options.time);
 
     window.scrollTo2 = scrollTo;
@@ -42,5 +42,5 @@ function scrollTo(elm, options){
 
 module.exports = {
     init     : init,
-    scrollTo : scrollTo 
+    scrollTo : scrollTo
 }

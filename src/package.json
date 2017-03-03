@@ -1,6 +1,6 @@
 {
   "name": "marsrover-pics",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "marsrover-pics",
   "main": "gulpfile.js",
   "application": {

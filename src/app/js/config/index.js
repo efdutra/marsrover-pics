@@ -1,7 +1,7 @@
 function init(){
 
     var environment = {
-        name : 'des',
+        name : 'dev',
         url  : window.location.origin
     },
     baseUrls = {
