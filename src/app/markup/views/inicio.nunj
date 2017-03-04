@@ -2,6 +2,6 @@
 
 {% block content %}
 
-<section></section>	
-    
+<section class="block--grid"></section>
+
 {% endblock %}
