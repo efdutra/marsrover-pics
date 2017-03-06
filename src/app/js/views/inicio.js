@@ -5,7 +5,7 @@ function init(){
     /*************** Dependencies ***************/
     var _             = require('dom-manipulator')
     ,   nunjucks      = require('../3rd-modules/nunjucks-edited')
-    ,   xhrt           = require('xhrt');
+    ,   xhrt          = require('xhrt');
     /********************************************/
 
     var token 	= 'K4bkwFu7BV29fSh6Q3drqyQavd7ouw4XNGon5RK1'
@@ -15,7 +15,6 @@ function init(){
 	, camera 	= 'navcam'
 	, data 		= 'https://api.nasa.gov/mars-photos/api/v1/rovers/' + rover + '/photos?sol=' + endpoint + '&camera=' + camera + '&page=' + page + '&api_key=' + token
 	, outterDiv	= _.getElm('.block--grid');
-
 
 	xhrt.get(data, '').then(function(resolve){
 		myObj = JSON.parse(resolve);

@@ -1,6 +1,11 @@
 <header class="default">
     <div class="inner">
     	<nav>
+			<select class="rovers">
+				<option value="curiosity" selected="selected">Curiosity</option>
+				<option value="opportunity">Opportunity</option>
+				<option value="spirit">Spirit</option>
+			</select>
     	</nav>
     </div>
 </header>
