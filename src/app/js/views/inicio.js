@@ -8,36 +8,104 @@ function init(){
     ,   xhrt          = require('xhrt');
     /********************************************/
 
-    var token 	= 'K4bkwFu7BV29fSh6Q3drqyQavd7ouw4XNGon5RK1'
-	, rover 	= 'spirit' // curiosity | opportunity | spirit
-	, page	 	= '1'
-	, endpoint 	= '100'
-	, camera 	= 'navcam'
-	, data 		= 'https://api.nasa.gov/mars-photos/api/v1/rovers/' + rover + '/photos?sol=' + endpoint + '&camera=' + camera + '&page=' + page + '&api_key=' + token
-	, outterDiv	= _.getElm('.block--grid');
+	var outterDiv	= _.getElm('.block--grid')
+	, marsRover		= _.getElm('.rovers')
+	, cam			= _.getElm('.camera')
+	, solarT		= _.getElm('.sol')
+	, range			= _.byAttr('range')
+	, page			= _.getElm('.page')
+    , date 			= _.getElm('.date')
+    , today			= new Date().toISOString().slice(0,10)
+    , yesterday		= new Date(new Date().getTime() - 48 * 60 * 60 * 1000).toISOString().slice(0,10)
+    , token			= 'JMhQuzTd3zYQmjQdhgBNHqAbuBAx1CXyJ6ZHIpZf'
+    , def			= {
+				'rovers' 	 : 'curiosity',
+				'camera' 	 : 'fhaz',
+				'sol' 	 	 : '',
+				'page'	 	 : '1',
+				'date' 		 : yesterday
+			}
+    // , hasSol		= (!def.date && def.sol ? '?sol=' + def.sol : '')
+    // , hasED			= (def.date ? '?earth_date=' + def.date : '' )
+    // , hasCam		= (def.camera ? '&camera=' + def.camera : '')
+    , innerDiv  	= _.createElm({'elm':'div', 'insertAfter': outterDiv, 'attributes': {'class':'pics--mars'}});
 
-	xhrt.get(data, '').then(function(resolve){
-		myObj = JSON.parse(resolve);
-		for (i = 0, lgt = myObj.photos.length; i < lgt; i++) {
-			var imgs 		= myObj.photos[i].img_src
-			, rover 		= myObj.photos[i].rover.name
-			, camera 		= myObj.photos[i].camera.name
-			, cameraFull 	= myObj.photos[i].camera.full_name
-			, innerDiv 		= document.createElement('div')
-			, img 			= document.createElement('img');
+    _.bindElm(marsRover, 'change', changeStuff);
+    _.bindElm(cam, 'change', changeStuff);
+    _.bindElm(solarT, 'change', changeStuff);
+    _.bindElm(page, 'change', changeStuff);
+    _.bindElm(date, 'change', changeStuff);
 
-			innerDiv.className 	= 'img--min';
-			img.src 			= imgs;
+    date.setAttribute("value", yesterday);
 
-			console.log(rover, camera, cameraFull);
 
-			innerDiv.appendChild(img);
-			outterDiv.appendChild(innerDiv);
-		}
-	},function(reject){
-		error = JSON.parse(reject.data);
-		outterDiv.innerHTML = error.errors;
-	});
+  	function changeStuff(e) {
+  		if (!!(_.getElm('img'))) _.removeElm('img');
+  		if (!!(_.getElm('.error'))) _.removeElm('.error');
+
+		var select 	= e.target.getAttribute("name")
+		,	valSel	= range ? e.target.value : e.target.options[e.target.selectedIndex].value
+		,	infos 	= {}
+		infos[select] = valSel
+		def[select] = valSel
+
+		console.log(url());
+
+		displayPics(url());
+	}
+
+	function url() {
+		return 'https://api.nasa.gov/mars-photos/api/v1/rovers/' + def.rovers + '/photos' + (!def.date && def.sol ? '?sol=' + def.sol : '') + (def.date ? '?earth_date=' + def.date : '' ) + (def.camera ? '&camera=' + def.camera : '') + '&page=' + def.page + '&api_key=' + token
+	}
+
+    function displayPics(elm) {
+		xhrt.get(url(), '').then(function(resolve){
+			myObj = JSON.parse(resolve);
+			for (i = 0, lgt = myObj.photos.length; i < lgt; i++) {
+				var imgs 		= myObj.photos[i].img_src
+				, 	sol 		= myObj.photos[i].sol
+				, 	maxSol 		= myObj.photos[i].rover.max_sol
+				// , rover 		= myObj.photos[i].rover.name
+				// , camera 		= myObj.photos[i].camera.name
+				// , cameraFull 	= myObj.photos[i].camera.full_name
+				, obj 			= {
+					'elm' : 'img',
+					'insertAfter' : '.pics--mars',
+					'attributes' : {
+						'src' : imgs,
+						'class' : 'img--min'
+					}
+				};
+				// outterDiv.innerHTML = url();
+				_.createElm(obj);
+			}
+
+			function setAttributes(el, options) {
+			   Object.keys(options).forEach(function(attr) {
+			     el.setAttribute(attr, options[attr]);
+			   })
+			}
+
+			setAttributes(solarT, {
+				'max' : maxSol,
+				'value' : def.sol
+			});
+
+		},function(reject){
+			error = JSON.parse(reject.data);
+			var objError = {
+				'elm' : 'span',
+				'content' : error.errors,
+				'insertAfter' : '.pics--mars',
+				'attributes' : {
+					'class' : 'error'
+				}
+			}
+			_.createElm(objError);
+
+		});
+    }
+    return displayPics();
 }
 
 module.exports = {

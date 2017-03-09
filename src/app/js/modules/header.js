@@ -8,10 +8,6 @@ function init(){
     ,   xhrt          = require('xhrt');
     /********************************************/
 
-    var selected	= _.getElm('.rovers')
-    ,	rover 		= selected.value;
-
-    console.log(rover);
 }
 
 module.exports = {
