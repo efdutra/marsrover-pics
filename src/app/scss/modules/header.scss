@@ -1,9 +1,28 @@
-header {}
+header {
+	width: 20vw;
+	position: fixed;
+	float: left;
+	overflow: hidden;
 
-@include media('tablet'){
-	header {}
-}
+	.page,
+	.date {
+		display: none;
+	}
 
-@include media('desktop'){
-	header {}
+	label {
+		font-size: 1.2rem;
+		display: block;
+		margin: 20px;
+		position: relative;
+
+		select,
+		input {
+			font-size: 1rem;
+			border: transparent;
+			background-color: lighten($color-white-gray, 12);
+			height: 70px;
+			width: 150px;
+			display: block;
+		}
+	}
 }

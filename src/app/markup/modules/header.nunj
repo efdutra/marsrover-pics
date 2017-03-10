@@ -1,34 +1,38 @@
 <header class="default">
     <div class="inner">
     	<nav>
-    		<label for="rovers">Rover</label>
-			<select name="rovers" id="rovers" class="rovers">
-				<option value="curiosity">Curiosity</option>
-				<option value="opportunity">Opportunity</option>
-				<option value="spirit">Spirit</option>
-			</select>
-			<label for="camera">Camera</label>
-			<select name="camera" id="camera" class="camera">
-				<option value="fhaz">FHAZ</option>
-				<option value="rhaz">RHAZ</option>
-				<option value="mast">MAST</option>
-				<option value="chemcam">CHEMCAM</option>
-				<option value="mahli">MAHLI</option>
-				<option value="mardi">MARDI</option>
-				<option value="navcam">NAVCAM</option>
-				<option value="pancam">PANCAM</option>
-				<option value="minites">MINITES</option>
-			</select>
-			<label for="page">Page</label>
-			<select name="page" id="page" class="page">
-				<option value="1">1</option>
-				<option value="2">2</option>
-				<option value="3">3</option>
-			</select>
-			<label for="sol">Martian Solar Day
+    		<label for="rovers">Rover
+				<select name="rovers" id="rovers" class="rovers" size="3">
+					<option value="curiosity">Curiosity</option>
+					<option value="opportunity">Opportunity</option>
+					<option value="spirit">Spirit</option>
+				</select>
+    		</label>
+			<label for="camera">Camera
+				<select name="camera" id="camera" class="camera" size="9">
+					<option value="">ALL</option>
+					<option value="fhaz">FHAZ</option>
+					<option value="rhaz">RHAZ</option>
+					<option value="mast">MAST</option>
+					<option value="chemcam">CHEMCAM</option>
+					<option value="mahli">MAHLI</option>
+					<option value="mardi">MARDI</option>
+					<option value="navcam">NAVCAM</option>
+					<option value="pancam">PANCAM</option>
+					<option value="minites">MINITES</option>
+				</select>
+			</label>
+			<label for="page" class="page">Page
+				<select name="page" id="page" class="page">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+				</select>
+			</label>
+			<label for="sol">Martian Solar Day - <span class="day">64</span>
 				<input class="sol" range name="sol" type="range" min="0" max="4650" value="0" step="1"></input>
 			</label>
-			<label for="date">Earth Date
+			<label for="date" class="date">Earth Date
 				<input class="date" name="date" type="date"></input>
 			</label>
     	</nav>

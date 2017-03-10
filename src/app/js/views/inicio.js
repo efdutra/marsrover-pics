@@ -12,6 +12,7 @@ function init(){
 	, marsRover		= _.getElm('.rovers')
 	, cam			= _.getElm('.camera')
 	, solarT		= _.getElm('.sol')
+	, day 			= _.getElm('.day')
 	, range			= _.byAttr('range')
 	, page			= _.getElm('.page')
     , date 			= _.getElm('.date')
@@ -20,10 +21,10 @@ function init(){
     , token			= 'JMhQuzTd3zYQmjQdhgBNHqAbuBAx1CXyJ6ZHIpZf'
     , def			= {
 				'rovers' 	 : 'curiosity',
-				'camera' 	 : 'fhaz',
-				'sol' 	 	 : '',
+				'camera' 	 : '',
+				'sol' 	 	 : '64',
 				'page'	 	 : '1',
-				'date' 		 : yesterday
+				'date' 		 : ''
 			}
     // , hasSol		= (!def.date && def.sol ? '?sol=' + def.sol : '')
     // , hasED			= (def.date ? '?earth_date=' + def.date : '' )
@@ -40,7 +41,7 @@ function init(){
 
 
   	function changeStuff(e) {
-  		if (!!(_.getElm('img'))) _.removeElm('img');
+  		if (!!(_.getElm('.box--img'))) _.removeElm('.box--img');
   		if (!!(_.getElm('.error'))) _.removeElm('.error');
 
 		var select 	= e.target.getAttribute("name")
@@ -52,6 +53,8 @@ function init(){
 		console.log(url());
 
 		displayPics(url());
+
+		day.innerHTML = def.sol;
 	}
 
 	function url() {
@@ -68,11 +71,14 @@ function init(){
 				// , rover 		= myObj.photos[i].rover.name
 				// , camera 		= myObj.photos[i].camera.name
 				// , cameraFull 	= myObj.photos[i].camera.full_name
+				, boxImg        = _.createElm({'elm':'div', 'insertAfter' : '.pics--mars', 'attributes':{'class':'box--img img-'+i}})
 				, obj 			= {
-					'elm' : 'img',
-					'insertAfter' : '.pics--mars',
+					'elm' : 'div',
+					'insertAfter' : '.img-'+i,
 					'attributes' : {
-						'src' : imgs,
+						'style' : {
+							'background-image' : 'url('+imgs+')'
+						},
 						'class' : 'img--min'
 					}
 				};
@@ -85,11 +91,6 @@ function init(){
 			     el.setAttribute(attr, options[attr]);
 			   })
 			}
-
-			setAttributes(solarT, {
-				'max' : maxSol,
-				'value' : def.sol
-			});
 
 		},function(reject){
 			error = JSON.parse(reject.data);

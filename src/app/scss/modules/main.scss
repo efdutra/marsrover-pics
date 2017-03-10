@@ -1,11 +1,52 @@
-main {    
+main {
     min-height: 100%;
+    width: 80vw;
+    position: relative;
+    float: right;
+    margin: 0 20px;
+
+    .block--grid {
+    	width: 100%;
+		height: auto;
+		position: relative;
+		// line-height: 0;
+		// -webkit-column-count: 5;
+		// -webkit-column-gap:   0px;
+		// -moz-column-count:    5;
+		// -moz-column-gap:      0px;
+		// column-count:         5;
+		// column-gap:           0px;
+
+		.pics--mars {
+			position: absolute;
+
+			.box--img {
+				position: relative;
+				width: 15vw;
+				height: 15vw;
+				max-height: 250px;
+				margin: .5vw;
+				float: left;
+				background: url('../img/loader.gif') center no-repeat;
+				background-size: cover;
+
+				.img--min {
+				    width: 100%;
+				    height: 100%;
+					float: left;
+					transition: all .5s linear;
+					background-repeat: no-repeat;
+					background-size: cover;
+				}
+			}
+		}
+	}
 }
 
-@include media('tablet'){
+@include media('tablet') {
     main {}
 }
 
-@include media('desktop'){
+@include media('desktop') {
     main {}
 }

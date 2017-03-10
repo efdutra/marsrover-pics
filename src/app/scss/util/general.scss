@@ -22,21 +22,8 @@ em {
 
 @include scrollbars(10px, darken($primary, 10));
 
-@include media('tablet'){}
+@include media('tablet') {}
 
-@include media('desktop'){
-    body {
-        .inner {
-            max-width: 1080px;
-            margin: 0 auto;
-        }
-    }
-}
+@include media('desktop') {}
 
-@include media('desktop-large'){
-    body {
-        .inner {
-            max-width: 1280px;
-        }
-    }
-}
+@include media('desktop-large') {}
