@@ -23,8 +23,7 @@ For more information on queries, please see [NASA API Page](https://api.nasa.gov
  - Modal with pic info
  - Relate available filter with rover
  - SOL or Earth Date comparison
- - Add Layout
- -- Responsive
+ - Add Layout (Responsive)
  - Cleanup the entire project
 
 
