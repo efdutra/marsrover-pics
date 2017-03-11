@@ -51,10 +51,9 @@ function init(){
 		infos[select] = valSel
 		def[select] = valSel
 
-		console.log(url());
+		// console.log(url());
 
 		displayPics(url());
-
 		day.innerHTML = def.sol;
 	}
 
