@@ -13,6 +13,7 @@ function init(){
 	, cam			= _.getElm('.camera')
 	, solarT		= _.getElm('.sol')
 	, day 			= _.getElm('.day')
+	, pics 			= _.getElm('.pics-num')
 	, range			= _.byAttr('range')
 	, page			= _.getElm('.page')
     , date 			= _.getElm('.date')
@@ -84,6 +85,8 @@ function init(){
 				};
 				// outterDiv.innerHTML = url();
 				_.createElm(obj);
+
+				pics.innerHTML = myObj.photos.length;
 			}
 
 			function setAttributes(el, options) {
@@ -91,6 +94,11 @@ function init(){
 			     el.setAttribute(attr, options[attr]);
 			   })
 			}
+
+			setAttributes(solarT, {
+				'max' : maxSol,
+				'value' : def.sol
+			});
 
 		},function(reject){
 			error = JSON.parse(reject.data);
@@ -103,6 +111,7 @@ function init(){
 				}
 			}
 			_.createElm(objError);
+			pics.innerHTML = '0';
 
 		});
     }

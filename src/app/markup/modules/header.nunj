@@ -35,6 +35,7 @@
 			<label for="date" class="date">Earth Date
 				<input class="date" name="date" type="date"></input>
 			</label>
+			<span class="total--pic">Total Pics: <span class="pics-num">0</span></span>
     	</nav>
     </div>
 </header>
