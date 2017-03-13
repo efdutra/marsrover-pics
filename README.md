@@ -20,7 +20,7 @@ MarsRover - Pics have some search filters as shown below
 For more information on queries, please see [NASA API Page](https://api.nasa.gov/api.html#MarsPhotos)
 
 ### Todos
- - Modal with pic info
+ - ~~Modal with pic info~~
  - Relate available filter with rover
  - SOL or Earth Date comparison
  - Add Layout (Responsive)

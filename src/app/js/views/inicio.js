@@ -46,6 +46,7 @@ function init(){
     _.bindElm(page, 'change', changeStuff);
     _.bindElm(date, 'change', changeStuff);
     _.bindElm(close, 'click', closeModal);
+    _.bindElm(overlay, 'click', closeModal);
 
     date.setAttribute("value", yesterday);
 
@@ -141,7 +142,6 @@ function init(){
 			pics.innerHTML = '0';
 		});
     }
-
     return displayPics();
 }
 
