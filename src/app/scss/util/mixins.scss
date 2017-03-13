@@ -35,7 +35,7 @@
 }
 
 @mixin makeArrow($direction : "top", $size : 10px, $color : black){
-    border: $size solid transparent; 
+    border: $size solid transparent;
     @if $direction == "top" {
       border-bottom: $size solid $color;
     }
@@ -46,26 +46,35 @@
       border-top: $size solid $color;
     }
     @else if $direction == "left" {
-      border-right: $size solid $color;  
+      border-right: $size solid $color;
     }
 }
 
-@mixin media($point) {
-    @if $point == "min-tablet" {
-        @media (min-width: 600px) { @content; }
-    }
-    @else if $point == "tablet" {
-        @media (min-width: 768px) { @content; }
-    }
-    @else if $point == "desktop" {
-        @media (min-width: 992px) { @content; }
-    }
-    @else if $point == "desktop-small" {
-        @media (min-width: 992px) and (max-width: 1024px) { @content; }
-    }
-    @else if $point == "desktop-large" {
-        @media (min-width: 1367px) { @content; }
-    }
+@mixin respond-to($media) {
+  @if $media == landscape {
+    @media only screen and (orientation:landscape) { @content; }
+  }
+  @if $media == small {
+    @media only screen and (max-width: 1023px) { @content; }
+  }
+  @if $media == smallMobile {
+    @media only screen and (max-height: 480px) { @content; }
+  }
+  @else if $media == ipadV {
+    @media only screen and (device-width: 768px) { @content; }
+  }
+  @else if $media == ipadH {
+    @media only screen and (device-width: 1024px) and (orientation : landscape) { @content; }
+  }
+  @else if $media == medium {
+    @media only screen and (min-width: 1024px) and (max-width: 1365px) { @content; }
+  }
+  @else if $media == large {
+    @media only screen and (min-width: 1366px) and (max-width: 1679px) { @content; }
+  }
+  @else if $media == maximum {
+    @media only screen and (min-width: 1680px) { @content; }
+  }
 }
 
 @mixin font($family : inherit, $size: inherit, $color: $black, $weight: inherit, $transform: none, $style: inherit){

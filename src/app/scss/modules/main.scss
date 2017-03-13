@@ -5,6 +5,11 @@ main {
     float: right;
     margin: 0 20px;
 
+    @include respond-to(small) {
+    	width: 100vw;
+    	margin: 40px 0;
+    }
+
     .overlay {
     	display: none;
     	position: fixed;
@@ -60,12 +65,21 @@ main {
     		display: block;
     		animation: zoom .5s;
 
+    		@include respond-to(small) {
+    			width: 100%;
+    			margin: 25% auto;
+    		}
+
     		.pic--img {
     			width: 60%;
     			margin: 0 auto;
     			border: solid 1px $color-white-gray;
     			position: relative;
     			display: block;
+
+    			@include respond-to(small) {
+	    			width: 80%;
+	    		}
     		}
 
     		.modal--captions {
@@ -73,6 +87,10 @@ main {
 		    	padding-top: 10px;
 			    display: block;
 			    margin: 0 auto;
+
+			    @include respond-to(small) {
+	    			width: auto;
+	    		}
 
 		    	h1,
 		    	h2,
@@ -84,8 +102,16 @@ main {
 		    		text-transform: uppercase;
 		    		font-weight: 800;
 
+		    		@include respond-to(small) {
+		    			font-size: 16px;
+		    		}
+
 		    		span {
 						color: $color-white-gray;
+
+						@include respond-to(small) {
+			    			font-size: 14px;
+			    		}
 		    		}
 		    	}
     		}
@@ -100,6 +126,13 @@ main {
 		.pics--mars {
 			position: absolute;
 
+			@include respond-to(small) {
+				position: relative;
+				display: block;
+				margin: 0 auto;
+				width: 80%;
+			}
+
 			.box--img {
 				position: relative;
 				width: 15vw;
@@ -109,6 +142,11 @@ main {
 				float: left;
 				background: url('../img/loader.gif') center no-repeat;
 				background-size: cover;
+
+				@include respond-to(small) {
+			    	width: 25vw;
+			    	height: 25vw;
+			    }
 
 				.img--min {
 					cursor: pointer;
@@ -126,12 +164,4 @@ main {
 			}
 		}
 	}
-}
-
-@include media('tablet') {
-    main {}
-}
-
-@include media('desktop') {
-    main {}
 }

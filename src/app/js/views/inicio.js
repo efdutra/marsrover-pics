@@ -8,6 +8,30 @@ function init(){
     ,   xhrt          = require('xhrt');
     /********************************************/
 
+    // Check Orientation Mobile
+
+    var deviceAgent = navigator.userAgent.toLowerCase()
+    , body 			= _.getElm('body');
+
+
+    if (deviceAgent.match(/(iphone|ipod|android|blackberry|symbianos|^sonyericsson|^nokia|^samsung|^lg)/)) {
+        _.addClass(body, 'isMobile');
+        var orientation = function(){
+            var x = deviceAgent.match(/(iphone|ipod)/) ? window.innerWidth : screen.width;
+            var y = deviceAgent.match(/(iphone|ipod)/) ? window.innerHeight : screen.height;
+            if(x > y) {
+                _.addClass(body, 'landscape');
+            } else {
+                _.removeClass(body, 'landscape');
+            }
+        };
+
+        orientation();
+        _.bindElm(window, 'resize', orientation);
+    }
+
+    // Check Orientation Mobile
+
 	var outterDiv	= _.getElm('.block--grid')
 	, marsRover		= _.getElm('.rovers')
 	, cam			= _.getElm('.camera')
@@ -22,8 +46,8 @@ function init(){
     , token			= 'JMhQuzTd3zYQmjQdhgBNHqAbuBAx1CXyJ6ZHIpZf'
     , def			= {
 				'rovers' 	 : 'curiosity',
-				'camera' 	 : 'fhaz',
-				'sol' 	 	 : '100',
+				'camera' 	 : '',
+				'sol' 	 	 : '200',
 				'page'	 	 : '1',
 				'date' 		 : ''
 			}

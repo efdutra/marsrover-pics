@@ -3,7 +3,7 @@
     	<nav>
     		<label for="rovers">Rover
 				<select name="rovers" id="rovers" class="rovers" size="3">
-					<option value="curiosity">Curiosity</option>
+					<option value="curiosity" selected>Curiosity</option>
 					<option value="opportunity">Opportunity</option>
 					<option value="spirit">Spirit</option>
 				</select>
@@ -11,7 +11,7 @@
 			<label for="camera">Camera
 				<select name="camera" id="camera" class="camera" size="9">
 					<option value="">ALL</option>
-					<option value="fhaz">FHAZ</option>
+					<option value="fhaz" selected>FHAZ</option>
 					<option value="rhaz">RHAZ</option>
 					<option value="mast">MAST</option>
 					<option value="chemcam">CHEMCAM</option>

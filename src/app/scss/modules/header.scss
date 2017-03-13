@@ -4,6 +4,11 @@ header {
 	float: left;
 	overflow: hidden;
 
+	@include respond-to(small) {
+		width: 100vw;
+		position: relative;
+	}
+
 	.page,
 	.date {
 		display: none;
@@ -23,6 +28,10 @@ header {
 			height: 70px;
 			width: 150px;
 			display: block;
+
+			@include respond-to(small) {
+				height: 20px;
+			}
 		}
 	}
 }

@@ -6,7 +6,30 @@ html {
     height: 100%;
 }
 
-body {}
+body {
+    &.isMobile {
+        &.landscape {
+            background-color: $color-white !important;
+
+            * {
+                display: none !important;
+            }
+
+            &::after {
+                content: '';
+                display: block;
+                background-image: url('../img/rotate.png');
+                background-size: 100%;
+                width: 50vh;
+                height: 50vh;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                margin: -25vh;
+            }
+        }
+    }
+}
 
 strong {
 	font-weight: bold;
@@ -21,9 +44,3 @@ em {
 }
 
 @include scrollbars(10px, darken($primary, 10));
-
-@include media('tablet') {}
-
-@include media('desktop') {}
-
-@include media('desktop-large') {}
