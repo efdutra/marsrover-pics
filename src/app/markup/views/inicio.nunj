@@ -1,7 +1,18 @@
 {% extends "./app/markup/layouts/index.nunj" %}
 
 {% block content %}
-
+<div class="pics--modal">
+	<span class="close--modal">X</span>
+	<div class="pic--box">
+		<img src="" alt="" class="pic--img" />
+		<div class="modal--captions">
+			<h1 class="pic--title">Rover: <span class="dinTitle"></span> </h1>
+			<h2 class="pic--subtitle">Camera: <span class="dinSubTitle"></span></h2>
+			<h3 class="pic--extra">Earth Date: <span class="dinExtra"></span></h3>
+		</div>
+	</div>
+</div>
+<div class="overlay"></div>
 <section class="block--grid"></section>
 
 {% endblock %}

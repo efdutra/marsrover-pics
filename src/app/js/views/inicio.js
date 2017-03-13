@@ -22,24 +22,37 @@ function init(){
     , token			= 'JMhQuzTd3zYQmjQdhgBNHqAbuBAx1CXyJ6ZHIpZf'
     , def			= {
 				'rovers' 	 : 'curiosity',
-				'camera' 	 : '',
-				'sol' 	 	 : '64',
+				'camera' 	 : 'fhaz',
+				'sol' 	 	 : '100',
 				'page'	 	 : '1',
 				'date' 		 : ''
 			}
-    // , hasSol		= (!def.date && def.sol ? '?sol=' + def.sol : '')
-    // , hasED			= (def.date ? '?earth_date=' + def.date : '' )
-    // , hasCam		= (def.camera ? '&camera=' + def.camera : '')
-    , innerDiv  	= _.createElm({'elm':'div', 'insertAfter': outterDiv, 'attributes': {'class':'pics--mars'}});
+	// , hasSol		= (!def.date && def.sol ? '?sol=' + def.sol : '')
+	// , hasED			= (def.date ? '?earth_date=' + def.date : '' )
+	// , hasCam		= (def.camera ? '&camera=' + def.camera : '')
+    , innerDiv  	= _.createElm({'elm':'div', 'insertAfter': outterDiv, 'attributes': {'class':'pics--mars'}})
+    , modal 		= _.getElm('.pics--modal')
+    , overlay 		= _.getElm('.overlay')
+    , close 		= _.getElm('.close--modal')
+    , picSrc 		= _.getElm('.pic--img')
+    , title 		= _.getElm('.dinTitle')
+    , subTitle 		= _.getElm('.dinSubTitle')
+    , extra 		= _.getElm('.dinExtra');
+
 
     _.bindElm(marsRover, 'change', changeStuff);
     _.bindElm(cam, 'change', changeStuff);
     _.bindElm(solarT, 'change', changeStuff);
     _.bindElm(page, 'change', changeStuff);
     _.bindElm(date, 'change', changeStuff);
+    _.bindElm(close, 'click', closeModal);
 
     date.setAttribute("value", yesterday);
 
+    function closeModal() {
+		_.removeClass(modal, 'open');
+		_.removeClass(overlay, 'open');
+    }
 
   	function changeStuff(e) {
   		if (!!(_.getElm('.box--img'))) _.removeElm('.box--img');
@@ -65,27 +78,42 @@ function init(){
 		xhrt.get(url(), '').then(function(resolve){
 			myObj = JSON.parse(resolve);
 			for (i = 0, lgt = myObj.photos.length; i < lgt; i++) {
-				var imgs 		= myObj.photos[i].img_src
-				, 	sol 		= myObj.photos[i].sol
+				var sol 		= myObj.photos[i].sol
 				, 	maxSol 		= myObj.photos[i].rover.max_sol
-				// , rover 		= myObj.photos[i].rover.name
-				// , camera 		= myObj.photos[i].camera.name
-				// , cameraFull 	= myObj.photos[i].camera.full_name
-				, boxImg        = _.createElm({'elm':'div', 'insertAfter' : '.pics--mars', 'attributes':{'class':'box--img img-'+i}})
-				, obj 			= {
+				, 	data 		= {
+					'imgs'		 : myObj.photos[i].img_src,
+					'rover'		 : myObj.photos[i].rover.name,
+					'cameraFull' : myObj.photos[i].camera.full_name,
+					'date'  	 : myObj.photos[i].earth_date
+				}
+				,   boxImg   	= _.createElm({'elm':'div', 'insertAfter' : '.pics--mars', 'attributes':{'class':'box--img img-'+i}})
+				,   obj 		= {
 					'elm' : 'div',
 					'insertAfter' : '.img-'+i,
 					'attributes' : {
 						'style' : {
-							'background-image' : 'url('+imgs+')'
+							'background-image' : 'url('+data.imgs+')'
 						},
 						'class' : 'img--min'
 					}
-				};
+				}
+
 				// outterDiv.innerHTML = url();
 				_.createElm(obj);
+				var pic = _.getElm(obj.insertAfter);
 
 				pics.innerHTML = myObj.photos.length;
+				pic.dataset.data = JSON.stringify(data);
+
+				_.bindElm(pic, 'click', function(e) {
+					var infos = JSON.parse(e.currentTarget.dataset.data);
+					picSrc.src = infos.imgs;
+					title.innerHTML = infos.rover;
+					subTitle.innerHTML = infos.cameraFull;
+					extra.innerHTML = infos.date;
+					_.addClass(modal, 'open');
+					_.addClass(overlay, 'open');
+				})
 			}
 
 			function setAttributes(el, options) {
@@ -111,9 +139,9 @@ function init(){
 			}
 			_.createElm(objError);
 			pics.innerHTML = '0';
-
 		});
     }
+
     return displayPics();
 }
 

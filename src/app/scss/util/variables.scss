@@ -15,3 +15,15 @@ $color-black      : #1a1a1a;
 $color-red        : #fd312b;
 $color-green      : #40bb1a;
 $color-orange     : #ff9127;
+
+
+// Z-index
+$zIndexBase 	  : 1000;
+
+
+// Modal Transitions
+
+@keyframes zoom {
+    from {transform:scale(0)}
+    to {transform:scale(1)}
+}
