@@ -10,8 +10,8 @@
     		</label>
 			<label for="camera">Camera
 				<select name="camera" id="camera" class="camera" size="9">
-					<option value="">ALL</option>
-					<option value="fhaz" selected>FHAZ</option>
+					<option value="" selected>ALL</option>
+					<option value="fhaz">FHAZ</option>
 					<option value="rhaz">RHAZ</option>
 					<option value="mast">MAST</option>
 					<option value="chemcam">CHEMCAM</option>
