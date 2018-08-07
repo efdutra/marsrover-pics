@@ -6,6 +6,8 @@ MarsRover - Pics is an open source project using the [NASA Api](https://api.nasa
 
 The nunj-starter package used on this project can be installed via NPM, [click here](https://www.npmjs.com/package/nunj-starter)
 
+NPM Version v4
+
 ### Queries
 
 MarsRover - Pics have some search filters as shown below
@@ -20,6 +22,7 @@ MarsRover - Pics have some search filters as shown below
 For more information on queries, please see [NASA API Page](https://api.nasa.gov/api.html#MarsPhotos)
 
 ### Todos
+ - Update Node Version
  - ~~Modal with pic info~~
  - Relate available filter with rover
  - SOL or Earth Date comparison
