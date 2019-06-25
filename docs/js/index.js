@@ -6391,7 +6391,7 @@ function index (){
     \****************** End ******************/
 
     var views   = {
-        inicio : require( './views/inicio' )
+        index : require( './views/index' )
     }
     ,   general = require( './general/' )
     ,   ctrl    = views[document.body.id]
@@ -6401,7 +6401,7 @@ function index (){
 }
 
 module.exports = (function(){ window.onload = index; })();
-},{"./general/":"/Users/efdutra/projetos/marsrover-pics/src/app/js/general/index.js","./views/inicio":"/Users/efdutra/projetos/marsrover-pics/src/app/js/views/inicio.js"}],"/Users/efdutra/projetos/marsrover-pics/src/app/js/modules/header.js":[function(require,module,exports){
+},{"./general/":"/Users/efdutra/projetos/marsrover-pics/src/app/js/general/index.js","./views/index":"/Users/efdutra/projetos/marsrover-pics/src/app/js/views/index.js"}],"/Users/efdutra/projetos/marsrover-pics/src/app/js/modules/header.js":[function(require,module,exports){
 function init(){
 
 	console.info("View: Header");
@@ -6417,7 +6417,7 @@ function init(){
 module.exports = {
     init : init
 }
-},{"../3rd-modules/nunjucks-edited":"/Users/efdutra/projetos/marsrover-pics/src/app/js/3rd-modules/nunjucks-edited.js","dom-manipulator":"/Users/efdutra/projetos/marsrover-pics/src/node_modules/dom-manipulator/index.js","xhrt":"/Users/efdutra/projetos/marsrover-pics/src/node_modules/xhrt/index.js"}],"/Users/efdutra/projetos/marsrover-pics/src/app/js/views/inicio.js":[function(require,module,exports){
+},{"../3rd-modules/nunjucks-edited":"/Users/efdutra/projetos/marsrover-pics/src/app/js/3rd-modules/nunjucks-edited.js","dom-manipulator":"/Users/efdutra/projetos/marsrover-pics/src/node_modules/dom-manipulator/index.js","xhrt":"/Users/efdutra/projetos/marsrover-pics/src/node_modules/xhrt/index.js"}],"/Users/efdutra/projetos/marsrover-pics/src/app/js/views/index.js":[function(require,module,exports){
 function init(){
 
 	console.info("View: Inicio");

@@ -19,7 +19,7 @@ function index (){
     \****************** End ******************/
 
     var views   = {
-        inicio : require( './views/inicio' )
+        index : require( './views/index' )
     }
     ,   general = require( './general/' )
     ,   ctrl    = views[document.body.id]
